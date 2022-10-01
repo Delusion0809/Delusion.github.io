@@ -1,20 +1,13 @@
-html,
-body {
+ html,body{
     margin: 0;
     padding: 0;
-}
-
-body {
+ }
+ 
+ body{
     padding: 15px;
-    background-color: #F0F2F5;
-}
+    background: #f2f3f5;
+ }
 
-.layui-form {
+.layui-form{
     width: 500px;
-}
-
-@media screen and (max-width:768px) {
-    .layui-form {
-        width: 100%;
-    }
 }

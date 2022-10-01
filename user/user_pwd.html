@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css" />
+    <link rel="stylesheet" href="/assets/css/user/user_pwd.css" />
+
+</head>
+
+<body>
+    <div class="layui-card">
+        <div class="layui-card-header">修改密码</div>
+        <div class="layui-card-body">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">原密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="oldPwd" required lay-verify="required|pwd" placeholder="请输入原密码"
+                            autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">新密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="newPwd" required lay-verify="required|pwd|samePwd"
+                            placeholder="请输入新密码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">确认新密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="rePwd" required lay-verify="required|pwd|repwd"
+                            placeholder="请再次确认密码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">修改密码</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- 导入layui的js文件 -->
+    <script src="/assets/lib/layui/layui.all.js"></script>
+    <!-- 导入jQuery -->
+    <script src="/assets/lib/jquery.js"></script>
+    <!-- 导入baseAPI的文件 -->
+    <script>// 注意：每次调用$.get()或$.post()或$.ajax()的时候
+        // 会先调用 ajaxPrefilter 这个函数
+        // 在这个函数中，可以拿到我们给Ajax提供的配置对象
+        $.ajaxPrefilter(function (options) {
+            // 在发起真正的 Ajax 请求之前，统一拼接请求的根路径
+            options.url = 'http://www.liulongbin.top:3007' + options.url
+            // 统一为有权限的接口，设置 headers 请求头
+            if (options.url.indexOf('/my/') !== -1) {
+                options.headers = {
+                    Authorization: localStorage.getItem('token') || ''
+                }
+            }
+
+        })</script>
+    <!-- <script src="/assets/js/baseAPI.js"></script> -->
+    <script src="/assets/js/user/user_pwd.js"></script>
+
+</body>
+
+</html>
